@@ -68,8 +68,8 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-right: 36px;
-    margin-left: 36px;
+    //margin-right: 36px;
+   // margin-left: 36px;
     
     input {
         font-family: 'Raleway';
@@ -148,7 +148,7 @@ align-items: center;
 justify-content: center;
 margin-top: 80px;
 justify-content: space-between;
-width: 90%;
+//width: 90%;
 font-family: 'Lexend Deca', sans-serif;
 h1{
     font-family: 'Lexend Deca';
