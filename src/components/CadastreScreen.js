@@ -2,48 +2,49 @@ import React,{ useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/images/trackitlogo.png" 
-import { ThreeDots } from  'react-loader-spinner'
+import dotenv from 'dotenv';
 
 export default function SignUp() {
 
-  let navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [password, setPassword] = useState("");
+    dotenv.config();
+    let navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  function submitData(event) {
-    event.preventDefault();
 
-    let postObject=
-        {
-            email ,
-            password,
-            name,
-            image
-        };
-    
-    const promise=axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",postObject);
+    function submitData(event) {
+        event.preventDefault();
 
-    promise.then(resposta => {
-        setEmail("");
-        setImage("");
-        setPassword("");
-        navigate("/");
-        console.log(resposta.data);
-    });
-  }
+        let postObject=
+            {
+                email ,
+                password,
+                name,
+                passwordConfirmation
+            };
+        
+        const promise=axios.post("http://localhost:5000/cadastrar",postObject);
 
-  return (
+        promise.then(resposta => {
+            setEmail("");
+            setName("");
+            setPasswordConfirmation("");
+            setPassword("");
+            navigate("/");
+        });
+    }
+
+    return (
     <>
       <Container>
         <Logo>MyWallet</Logo>
         <Form onSubmit={submitData}>
-            <input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
+            <input type="text" placeholder="e-mail" onChange={(e) => setEmail(e.target.value)} value={email}/>
             <input type="text" placeholder="nome" onChange={(e) => setName(e.target.value)} value={name} />
-            <input type="text" placeholder="Senha" onChange={(e) => setImage(e.target.value)} value={image}/>
-            <input type="text"  placeholder="Digite novamente sua senha" onChange={(e) => setPassword(e.target.value)} value={password} />
+            <input type="text" placeholder="senha" onChange={(e) => setPassword(e.target.value)} value={password}/>
+            <input type="text"  placeholder="digite novamente sua senha" onChange={(e) => setPasswordConfirmation(e.target.value)} value={passwordConfirmation} />
             <button type="submit" >Cadastrar</button>
         </Form>
         <Link to='/'>Já tem uma conta? Entre agora! </Link>

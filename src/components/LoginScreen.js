@@ -47,14 +47,14 @@ export default function LoginScreen(){
                 <Logo>MyWallet</Logo>
             {isLoading ? (
                 <Form background={"#f2f2f2"} color={"#afafaf"}>
-                    <input disabled type="email" id="email" value={email} placeholder="E-mail" required onChange={(e)=>setEmail(e.target.value)} />
-                    <input disabled type="password" id="password" value={password} placeholder="Senha" required onChange={(e)=>setPassword(e.target.value)} />
+                    <input disabled type="email" id="email" value={email} placeholder="e-mail" required onChange={(e)=>setEmail(e.target.value)} />
+                    <input disabled type="password" id="password" value={password} placeholder="senha" required onChange={(e)=>setPassword(e.target.value)} />
                     <button type="submit" disabled opacity={0.7}>{<ThreeDots color={"#ffffff"} width={51} />}</button>
                 </Form>
                  ) : ( 
                 <Form background={"#ffffff"} color={"#666666"} onSubmit={Login}>
-                    <input type="email" id="email" value={email} placeholder="E-mail" required onChange={(e)=>setEmail(e.target.value)} />
-                    <input type="password" id="password" value={password} placeholder="Senha" required onChange={(e)=>setPassword(e.target.value)} />
+                    <input type="email" id="email" value={email} placeholder="e-mail" required onChange={(e)=>setEmail(e.target.value)} />
+                    <input type="password" id="password" value={password} placeholder="senha" required onChange={(e)=>setPassword(e.target.value)} />
                     <button type="submit" >Entrar</button>
                 </Form>
             )}

@@ -32,16 +32,16 @@ export default function LoginScreen(){
             value,
             description,
             type:"positive",
-            date:now.formatt("DD/MM/YY")
+            date:now.format("DD/MM/YY")
         }
 
-        const promise=axios.post(`http://localhost:5000/transactions`,postTransaction,config);
+        const promise=axios.post(`http://localhost:5000/transaction`, postTransaction, config);
 
         promise.then(resposta => {
             setValue("");
             setDescription("");
             setIsLoading(false);
-            navigate("/principal");
+            navigate("/main");
         });
     }
     
@@ -53,14 +53,14 @@ export default function LoginScreen(){
         <Container>
             {isLoading ? (
                 <Form background={"#f2f2f2"} color={"#afafaf"}>
-                    <input disabled id="value" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
-                    <input disabled id="description" value={description} placeholder="Descrição" required onChange={(e)=>setDescription(e.target.value)} />
+                    <input disabled id="value" value={value} placeholder="valor" required onChange={(e)=>setValue(e.target.value)} />
+                    <input disabled id="description" value={description} placeholder="descrição" required onChange={(e)=>setDescription(e.target.value)} />
                     <button type="submit" disabled opacity={0.7}>{<ThreeDots color={"#ffffff"} width={51} />}</button>
                 </Form>
                  ) : ( 
                 <Form background={"#ffffff"} color={"#000000"} onSubmit={Send}>
-                    <input disabled id="value" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
-                    <input disabled id="description" value={description} placeholder="Descrição" required onChange={(e)=>setDescription(e.target.value)} />
+                    <input  id="value" value={value} placeholder="valor" required onChange={(e)=>setValue(e.target.value)} />
+                    <input  id="description" value={description} placeholder="descrição" required onChange={(e)=>setDescription(e.target.value)} />
                     <button type="submit">Enviar entrada</button>
                 </Form>
             )}
