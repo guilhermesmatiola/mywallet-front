@@ -42,8 +42,8 @@ export default function SignUp() {
         <Form onSubmit={submitData}>
             <input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
             <input type="text" placeholder="nome" onChange={(e) => setName(e.target.value)} value={name} />
-            <input type="text" placeholder="foto" onChange={(e) => setImage(e.target.value)} value={image}/>
-            <input type="text"  placeholder="senha" onChange={(e) => setPassword(e.target.value)} value={password} />
+            <input type="text" placeholder="Senha" onChange={(e) => setImage(e.target.value)} value={image}/>
+            <input type="text"  placeholder="Digite novamente sua senha" onChange={(e) => setPassword(e.target.value)} value={password} />
             <button type="submit" >Cadastrar</button>
         </Form>
         <Link to='/'>Já tem uma conta? Entre agora! </Link>

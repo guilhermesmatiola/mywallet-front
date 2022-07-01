@@ -4,39 +4,43 @@ import { Link, useNavigate } from "react-router-dom";
 import {React, useContext, useState } from 'react';
 import UserContext from "../context/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
+import dayjs from 'dayjs';
 
 export default function LoginScreen(){
+
+    const now=dayjs().locale("pt-br");
     
-    const [email, setEmail]=useState("");
-    const [password,setPassword]=useState("");
+    const [value, setValue]=useState("");
+    const [description,setDescription]=useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const { user, setUser } = useContext(UserContext);
+    const {token} = user;
 
-    function Login(event){
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    };
+
+    function Send(event){
         event.preventDefault();
         setIsLoading(true);
-        const postLogin={
-            email,
-            password
+        const postTransaction={
+            value,
+            description,
+            type:"negative",
+            date:now.format("DD/MM/YY")
         }
 
-        const promise=axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",postLogin);
+        const promise=axios.post(`http://localhost:5000/transaction`,postTransaction, config);
 
         promise.then(resposta => {
-            setEmail("");
-            setPassword("");
+            setValue("");
+            setDescription("");
             setIsLoading(false);
-            console.log(resposta.data);
-            setUser(
-                {   
-                    image: resposta.data.image,
-                    token: resposta.data.token,
-                    percentage: 0
-                },
-            );
             navigate("/principal");
         });
     }
@@ -49,14 +53,14 @@ export default function LoginScreen(){
         <Container>
             {isLoading ? (
                 <Form background={"#f2f2f2"} color={"#afafaf"}>
-                    <input disabled type="email" id="email" value={email} placeholder="Valor" required onChange={(e)=>setEmail(e.target.value)} />
-                    <input disabled type="password" id="password" value={password} placeholder="Descrição" required onChange={(e)=>setPassword(e.target.value)} />
+                    <input disabled id="value" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
+                    <input disabled type="description" id="description" value={description} placeholder="Descrição" required onChange={(e)=>setDescription(e.target.value)} />
                     <button type="submit" disabled opacity={0.7}>{<ThreeDots color={"#ffffff"} width={51} />}</button>
                 </Form>
                  ) : ( 
-                <Form background={"#ffffff"} color={"#000000"} onSubmit={Login}>
-                    <input type="email" id="email" value={email} placeholder="Valor" required onChange={(e)=>setEmail(e.target.value)} />
-                    <input type="password" id="password" value={password} placeholder="Descrição" required onChange={(e)=>setPassword(e.target.value)} />
+                <Form background={"#ffffff"} color={"#000000"} onSubmit={Send}>
+                    <input  id="value" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
+                    <input type="description" id="description" value={description} placeholder="Descrição" required onChange={(e)=>setDescription(e.target.value)} />
                     <button type="submit">Enviar saída</button>
                 </Form>
             )}
