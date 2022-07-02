@@ -14,10 +14,6 @@ export default function Today(){
     const [transactions, setTransactions] = useState([]);
     //const [name, setName] = useState([]);
 
-    
-    const username=user.name;
-    console.log(username);
-
     useEffect(() => {
         async function GetTransactions() {
         const config = {
@@ -52,8 +48,15 @@ export default function Today(){
 
         return transactions.map((transaction, index) => {
         const { date, description, value, type, _id } = transaction;
-        
-        const valueFixed = value;
+        const newvalue = parseFloat(value)
+        const valueFixed = newvalue.toFixed(2);
+        let prefix;
+        if(type==="positive"){
+          prefix = '+'
+        }
+        if(type==="negative"){
+          prefix = '-'
+        }
 
         return (
             <Transaction type={type} index={index}>
@@ -61,7 +64,7 @@ export default function Today(){
 
             <span>{description}</span>
 
-            <span>{valueFixed}</span>
+            <span>{prefix}{valueFixed}</span>
             </Transaction>
         );
         });
@@ -72,9 +75,9 @@ export default function Today(){
 
         return transactions.reduce((previousValue, currentValue) => {
         if (currentValue.type === "positive") {
-            return previousValue + currentValue.value;
+            return previousValue + Number(currentValue.value);
         } else {
-            return previousValue - currentValue.value;
+            return previousValue - Number(currentValue.value);
         }
         }, initialValue);
     }
@@ -90,8 +93,7 @@ export default function Today(){
         );
         }
     }
-    console.log(name);
-    console.log(email);
+  
     return(
         <>
         <Header>
