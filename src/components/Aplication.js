@@ -39,11 +39,11 @@ export default function Today(){
 
     function RenderTransactions() {
         if (transactions.length === 0) {
-        return (
-            <div className="withouttransaction">
-            <p>Não há registros de entrada ou saída</p>
-            </div>
-        );
+          return (
+              <div className="withouttransaction">
+              <p>Não há registros de entrada ou saída</p>
+              </div>
+          );
         }
 
         return transactions.map((transaction, index) => {
@@ -52,10 +52,10 @@ export default function Today(){
         const valueFixed = newvalue.toFixed(2);
         let prefix;
         if(type==="positive"){
-          prefix = '+'
+          prefix = 'R$+'
         }
         if(type==="negative"){
-          prefix = '-'
+          prefix = 'R$-'
         }
 
         return (
@@ -72,7 +72,7 @@ export default function Today(){
 
     function CalculateBalance() {
         const initialValue = 0;
-
+  
         return transactions.reduce((previousValue, currentValue) => {
         if (currentValue.type === "positive") {
             return previousValue + Number(currentValue.value);
@@ -87,8 +87,8 @@ export default function Today(){
         const total = CalculateBalance();
         return (
             <Balance total={total}>
-            <span>SALDO</span>
-            <span>{total}</span>
+              <span>SALDO</span>
+              <span>R${total}</span>
             </Balance>
         );
         }
@@ -98,15 +98,15 @@ export default function Today(){
         <>
         <Header>
             <h1>Olá, {name}</h1>     
-            <ion-icon onClick={()=>navigate("/main")} name="log-out-outline"></ion-icon>
+            <ion-icon onClick={()=>navigate("/")} name="log-out-outline"></ion-icon>
         </Header>
         <Page>
-        <TransactionsContainer transactions={transactions}>
-            <Transactions>{RenderTransactions()}</Transactions>
-            {RenderBalance()}
-        </TransactionsContainer>
+          <TransactionsContainer transactions={transactions}>
+              <Transactions>{RenderTransactions()}</Transactions>
+              {RenderBalance()}
+          </TransactionsContainer>
 
-            <Container>
+          <Container>
             <Button onClick={()=>navigate("/add")}>
                 <Column>
                     <ion-icon name="add-circle-outline"></ion-icon>
@@ -119,7 +119,7 @@ export default function Today(){
                     <Text>Nova saída</Text>
                 </Column>
             </Button>
-            </Container>
+          </Container>
         </Page>
         </>
     )
@@ -152,13 +152,7 @@ const Header=styled.div`
         border-radius: 98.5px;
     }
 `
-const Data=styled.h1`font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: #C6C6C6;
-`
+
 const Button=styled.button`
         font-family: 'Raleway';
         font-weight: 700;
@@ -229,17 +223,6 @@ const Container=styled.div`
         color: #126BA5;
     }
 `
-const TransactionsHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  i {
-    font-size: 30px;
-    color: #ffffff;
-    cursor: pointer;
-  }
-`;
 
 const TransactionsContainer = styled.div`
   width: 90%;
@@ -296,7 +279,7 @@ const Transaction = styled.div`
     cursor: pointer;
   }
   span:nth-child(3) {
-    color: ${(props) => (props.type === "income" ? "#03AC00" : "#C70000")};
+    color: ${(props) => (props.type === "positive" ? "#03AC00" : "#C70000")};
   }
   i {
     color: #c6c6c6;
@@ -325,36 +308,7 @@ const Balance = styled.div`
     font-weight: 700;
   }
   span:nth-child(2) {
-    color: ${(props) => (props.total > 0 ? "#03AC00" : "#C70000")};
+    color: ${(props) => (props.total >= 0 ? "#03AC00" : "#C70000")};
     font-weight: 400;
-  }
-`;
-
-const ContainerAddTransaction = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  a {
-    height: 115px;
-    width: 50%;
-    margin: 0;
-    border-radius: 5px;
-    background-color: #a328d6;
-    padding: 10px;
-    font-size: 17px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    word-spacing: 100vw;
-    line-height: 20px;
-  }
-  a:first-child {
-    margin-right: 8px;
-  }
-  i {
-    font-size: 25px;
-    color: #ffffff;
   }
 `;

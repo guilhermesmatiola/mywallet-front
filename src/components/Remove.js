@@ -54,13 +54,13 @@ export default function LoginScreen(){
         <Container>
             {isLoading ? (
                 <Form background={"#f2f2f2"} color={"#afafaf"}>
-                    <input disabled id="value" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
+                    <input disabled id="value" type="number" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
                     <input disabled type="description" id="description" value={description} placeholder="Descrição" required onChange={(e)=>setDescription(e.target.value)} />
                     <button type="submit" disabled opacity={0.7}>{<ThreeDots color={"#ffffff"} width={51} />}</button>
                 </Form>
                  ) : ( 
                 <Form background={"#ffffff"} color={"#000000"} onSubmit={Send}>
-                    <input  id="value" value={value} placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
+                    <input  id="value" value={value} type="number" placeholder="Valor" required onChange={(e)=>setValue(e.target.value)} />
                     <input type="description" id="description" value={description} placeholder="Descrição" required onChange={(e)=>setDescription(e.target.value)} />
                     <button type="submit">Enviar saída</button>
                 </Form>
