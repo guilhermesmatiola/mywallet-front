@@ -41,7 +41,7 @@ export default function LoginScreen(){
             setValue("");
             setDescription("");
             setIsLoading(false);
-            navigate("/principal");
+            navigate("/main");
         });
     }
     

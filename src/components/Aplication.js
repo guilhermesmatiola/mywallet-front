@@ -10,8 +10,11 @@ export default function Today(){
 
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
-    const { name, token } = user;
+    const { email, name, token } = user;
     const [transactions, setTransactions] = useState([]);
+    
+    const username=user.name;
+    console.log(username);
 
     useEffect(() => {
         async function GetTransactions() {
@@ -36,6 +39,12 @@ export default function Today(){
         GetTransactions();
     }, []);
 
+    // function getName(){
+    //   if(typeof(name)=='name'){
+    //     return(<p>{name}</p>)
+    //   }
+    // }
+
     function RenderTransactions() {
         if (transactions.length === 0) {
         return (
@@ -53,10 +62,10 @@ export default function Today(){
         return (
             <Transaction type={type} index={index}>
             <span>{date}</span>
-            
-            <span>{valueFixed}</span>
 
             <span>{description}</span>
+
+            <span>{valueFixed}</span>
             </Transaction>
         );
         });
@@ -85,11 +94,12 @@ export default function Today(){
         );
         }
     }
-
+    console.log(name);
+    console.log(email);
     return(
         <>
         <Header>
-            <h1>Olá, {name}</h1>     
+            <h1>Olá, {token}</h1>     
             <ion-icon onClick={()=>navigate("/main")} name="log-out-outline"></ion-icon>
         </Header>
         <Page>
@@ -304,7 +314,7 @@ const Balance = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: absolute;
+  //position: absolute;
   bottom: 153px;
   left: 40px;
   right: 39px;
