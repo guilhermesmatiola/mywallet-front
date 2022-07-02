@@ -48,7 +48,8 @@ export default function LoginScreen(){
     return(
         <>
         <Header>
-            <h1>Nova Entrada</h1>     
+            <h1>Nova Entrada</h1>  
+            <ion-icon onClick={()=>navigate("/main")} name="return-down-back-outline"></ion-icon>
         </Header>
         <Container>
             {isLoading ? (
