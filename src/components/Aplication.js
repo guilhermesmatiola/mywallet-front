@@ -10,8 +10,10 @@ export default function Today(){
 
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
-    const { email, name, token } = user;
+    const { name, email, token } = user;
     const [transactions, setTransactions] = useState([]);
+    //const [name, setName] = useState([]);
+
     
     const username=user.name;
     console.log(username);
@@ -38,12 +40,6 @@ export default function Today(){
         }
         GetTransactions();
     }, []);
-
-    // function getName(){
-    //   if(typeof(name)=='name'){
-    //     return(<p>{name}</p>)
-    //   }
-    // }
 
     function RenderTransactions() {
         if (transactions.length === 0) {
@@ -99,7 +95,7 @@ export default function Today(){
     return(
         <>
         <Header>
-            <h1>Olá, {token}</h1>     
+            <h1>Olá, {name}</h1>     
             <ion-icon onClick={()=>navigate("/main")} name="log-out-outline"></ion-icon>
         </Header>
         <Page>

@@ -34,7 +34,7 @@ export default function LoginScreen(){
             console.log(resposta.data);
             setUser(
                 {
-                    
+                    name:resposta.data.name,
                     token: resposta.data.token
                 },
             );
