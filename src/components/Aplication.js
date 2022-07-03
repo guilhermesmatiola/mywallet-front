@@ -12,7 +12,6 @@ export default function Today(){
     const { user } = useContext(UserContext);
     const { name, email, token } = user;
     const [transactions, setTransactions] = useState([]);
-    //const [name, setName] = useState([]);
 
     useEffect(() => {
         async function GetTransactions() {
@@ -199,13 +198,7 @@ const Page=styled.div`
     height: calc(100vh - 140px);
     overflow-x: scroll;
 `
-const Register=styled.div`
-    margin-top: 80px;
-    width: 90%;
-    height: 60%;
-    background-color: white;
-    border-radius: 5px;
-`
+
 const Container=styled.div`
     display: flex;
     align-items: center;
