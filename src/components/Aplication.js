@@ -88,7 +88,7 @@ export default function Today(){
         return (
             <Balance total={total}>
               <span>SALDO</span>
-              <span>R${total}</span>
+              <span>R${total.toFixed(2)}</span>
             </Balance>
         );
         }
