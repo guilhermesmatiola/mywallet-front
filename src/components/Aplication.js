@@ -23,7 +23,8 @@ export default function Today(){
 
         try {
             const response = await axios.get(
-            "http://localhost:5000/transactions",
+            //"http://localhost:5000/transactions",
+            "https://mywallet-guimatiola.herokuapp.com/transactions",
             config
             );
 

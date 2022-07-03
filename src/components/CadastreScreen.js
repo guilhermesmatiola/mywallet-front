@@ -25,7 +25,8 @@ export default function SignUp() {
                 passwordConfirmation
             };
         
-        const promise=axios.post("http://localhost:5000/cadastrar",postObject);
+        //const promise=axios.post("http://localhost:5000/cadastrar",postObject);
+        const promise=axios.post("https://mywallet-guimatiola.herokuapp.com/cadastrar",postObject);
 
         promise.then(resposta => {
             setEmail("");

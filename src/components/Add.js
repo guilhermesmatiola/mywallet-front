@@ -35,7 +35,8 @@ export default function LoginScreen(){
             date:now.format("DD/MM/YY")
         }
 
-        const promise=axios.post(`http://localhost:5000/transaction`, postTransaction, config);
+        //const promise=axios.post(`http://localhost:5000/transaction`, postTransaction, config);
+        const promise=axios.post(`https://mywallet-guimatiola.herokuapp.com/transaction`, postTransaction, config);
 
         promise.then(resposta => {
             setValue("");
