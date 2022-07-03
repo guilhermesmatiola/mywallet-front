@@ -48,7 +48,7 @@ export default function Today(){
 
         return transactions.map((transaction, index) => {
         const { date, description, value, type, _id } = transaction;
-        const newvalue = parseFloat(value)
+        const newvalue = parseFloat(value.replace(",","."))
         const valueFixed = newvalue.toFixed(2);
         let prefix;
         if(type==="positive"){
@@ -75,9 +75,9 @@ export default function Today(){
   
         return transactions.reduce((previousValue, currentValue) => {
         if (currentValue.type === "positive") {
-            return previousValue + Number(currentValue.value);
+            return previousValue + Number(currentValue.value.replace(",","."));
         } else {
-            return previousValue - Number(currentValue.value);
+            return previousValue - Number(currentValue.value.replace(",","."));
         }
         }, initialValue);
     }
