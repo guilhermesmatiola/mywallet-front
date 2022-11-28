@@ -1,3 +1,10 @@
+My wallet serve para você controlar seu fluxo de dinheiro
+
+My wallet is for you to manage your cash flow
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
